@@ -1,0 +1,10 @@
+# directories
+.venv/
+__pycache__/
+build/
+dist/
+.idea/
+
+# files
+activate.ps1
+*.spec
