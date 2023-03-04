@@ -3,6 +3,8 @@ import Client
 import argparse
 import re
 import Reusables
+import sys
+from pathlib import Path
 
 
 msgs = Reusables.Msgs()
@@ -11,7 +13,7 @@ IP_PORT_MATCH = "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        prog="LanShare",
+        prog=f"{Path(sys.argv[0]).name}",
         description="Share files on local area network",
         epilog="Source code at https://github.com/linx3273/Lan-Share"
     )

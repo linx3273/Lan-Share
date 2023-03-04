@@ -14,6 +14,28 @@ class Host(Share):
 
         self.set_mode()  # check if host wants to send or receive files
 
+    @staticmethod
+    def get_ip(self):
+        """
+
+        :param self:
+        :return: Local IP address of the machine
+        """
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.settimeout(0)
+
+        try:
+            # doesn't even have to be reachable
+            s.connect(("10.254.254.254", 1))
+            ip = s.gethostname()[0]
+        except Exception:
+            ip = "127.0.0.1"
+        finally:
+            s.close()
+
+        return ip
+
+
     def host(self):
         self._host = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         try:

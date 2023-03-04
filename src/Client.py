@@ -23,7 +23,11 @@ class Client(Share):
     def client(self):
         self._conn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self._conn.connect(self.parse_ip())
+        msgs.inf()
+        msgs.console().print(f"Connecting to [{Reusables.ADDR_STYLE}]{self._ip}[/{Reusables.ADDR_STYLE}]")
 
         self.get_mode()
+        msgs.inf()
+        msgs.console().print(f"Set mode to [yellow]{self._mode}[/yellow]")
         self.transfer_handler()
         self._conn.close()
