@@ -5,6 +5,7 @@ import re
 import Reusables
 import sys
 from pathlib import Path
+import os
 
 
 msgs = Reusables.Msgs()
@@ -40,13 +41,25 @@ if __name__ == "__main__":
     elif args.client and re.search(IP_PORT_MATCH, args.ip):
         msgs.inf()
         msgs.console().print("Running as a client")
-        c = Client.Client(args.path, args.ip)
+        if os.name == 'nt':
+            if args.path[-1] == "'" or args.path[-1] == '"':
+                args.path = args.path[:-1]
+
+            c = Client.Client(args.path, args.ip)
+        else:
+            c = Client.Client(args.path, args.ip)
         c.client()
 
     elif args.host:
         msgs.inf()
         msgs.console().print("Running as a host")
-        h = Host.Host(args.path)
+        if os.name == 'nt':
+            if args.path[-1] == "'" or args.path[-1] == '"':
+                args.path = args.path[:-1]  
+                          
+            h = Host.Host(args.path)
+        else:
+            h = Host.Host(args.path)
         h.host()
 
     else:
