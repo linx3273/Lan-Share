@@ -24,7 +24,7 @@ Buffer recv rule
 class Share:
     def __init__(self, path):
         # points to file/folder that must be sent or destination where file/folder must be received
-        self._path = Path(path)
+        self._path = Path(path).resolve()
         self._conn = None  # holds the instance of the connection
         self._mode = None
 
